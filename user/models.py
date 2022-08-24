@@ -2,46 +2,20 @@ from django.contrib.auth.models import User, AbstractUser
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-# from django_upload_path.upload_path import auto_cleaned_path_stripped_uuid4
+from django_upload_path.upload_path import auto_cleaned_path_stripped_uuid4
 
 
 class UserProfile(AbstractUser):
-    email = models.EmailField(_('email address'), blank=False, null=True, unique=True)
-    first_name = models.CharField(_('first name'), max_length=30, blank=False)
-    last_name = models.CharField(_('last name'), max_length=150, blank=False)
-    document_number = models.CharField(verbose_name="documento", max_length=30, null=True, blank=True)
-    #profile_picture = models.ImageField(_('foto de perfil'), upload_to=auto_cleaned_path_stripped_uuid4, null=True,
-    #                                   blank=True)
-    description = models.TextField(_("descripción"), blank=True)
-
-    SUBSCRIBER = 'Subscriber'
-    LECTURER = 'Lecturer'
-    EVALUATOR = 'Evaluator'
-    COLLABORATOR = 'Collaborator'
-    ORGANIZER = 'Organizer'
-
-    USER_TYPE_CHOICES_COLLABORATOR = (
-        (SUBSCRIBER, 'Suscriptor'),
-        (LECTURER, 'Disertante'),
-        (EVALUATOR, 'Evaluador'),
-    )
-
-    USER_TYPE_CHOICES_ORGANIZER = (
-        (SUBSCRIBER, 'Suscriptor'),
-        (LECTURER, 'Disertante'),
-        (COLLABORATOR, 'Colaborador'),
-        (EVALUATOR, 'Evaluador'),
-    )
-
-    USER_TYPE_CHOICES = (
-        (SUBSCRIBER, 'Suscriptor'),
-        (LECTURER, 'Disertante'),
-        (COLLABORATOR, 'Colaborador'),
-        (ORGANIZER, 'Organizador'),
-        (EVALUATOR, 'Evaluador'),
-    )
-
-    user_type = models.CharField(_('tipo'), max_length=15, choices=USER_TYPE_CHOICES, default=LECTURER)
+    email = models.EmailField(_('correo electronico'), blank=False, null=True, unique=True,)
+    first_name = models.CharField(_('nombre'), max_length=50, blank=False,)
+    last_name = models.CharField(_('apellido'), max_length=50, blank=False, )
+    document_number = models.CharField(_('documento'), max_length=30, null=True, blank=True,)
+    profile_picture = models.ImageField(_('foto de perfil'), upload_to=auto_cleaned_path_stripped_uuid4, null=True,
+                                       blank=True)
+    address = models.CharField(_('domicilio'), max_length=50, blank=False, null=True, )
+    number_adress = models.IntegerField(_('numero de domicilio'), blank=False, null=True, )
+    number_phone = models.IntegerField(_('numero de telefono'), blank=False, null=True, )
+    description = models.TextField(_("descripción"), blank=True, null=True, )
 
     is_staff = models.BooleanField(
         _("staff status"),
@@ -93,3 +67,19 @@ class UserProfile(AbstractUser):
             return "%s - %s" % (self.get_full_name(), self.document_number)
         else:
             return self.get_full_name()
+
+
+class AddressUserProfile(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='AdrresUserProfile_user')
+    #province = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='AdrresUserProfile_province')
+    #location = models.ForeignKey(UserProfile, on_delete=models.PROTECT, related_name="NoteClaim_author")
+    postal_code = models.IntegerField(_('codigo postal'), blank=False, null=True)
+    street = models.CharField(_('calle'), max_length=100, blank=False, null=True)
+    number_adress = models.IntegerField(_('numero de calle'), blank=False, null=True)
+
+    class Meta:
+        verbose_name = 'direccion'
+        verbose_name_plural = 'direcciones'
+
+    def __str__(self):
+        return self.location
