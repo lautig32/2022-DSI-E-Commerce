@@ -17,7 +17,6 @@ from user.models import UserProfile
 def home(request):
     return render(request, 'user/login.html')
 
-
 def my_profile(request):
     return render(request, 'user/profile.html')
 
