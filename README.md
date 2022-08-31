@@ -2,11 +2,17 @@
 
 # System Django 4.1 and Python 3.10
 
+# Usar entorno virtual necesita que le demos acceso en windows...
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
 # Entorno virtual
 
 python -m venv venv
 
 # windows .\venv\Scripts\activate
+
+# source .\venv\bin\activate
 
 ## Instalación y configuración
 
@@ -29,26 +35,4 @@ python -m venv venv
 * Salida de paquetes instalados en formato de requisitos.
 ```console
 (venv) pip freeze > requirements.txt
-```
-
-* [Django Admin Interface](https://pypi.org/project/django-admin-interface/) 
-
-##### [Django](https://www.djangoproject.com/) theme (default):
-```console
-(venv) python manage.py loaddata admin_interface_theme_django.json
-```
-
-##### [Bootstrap](http://getbootstrap.com/) theme:
-```console
-(venv) python manage.py loaddata admin_interface_theme_bootstrap.json
-```
-
-##### [Foundation](http://foundation.zurb.com/) theme:
-```console
-(venv) python manage.py loaddata admin_interface_theme_foundation.json
-```
-
-##### [U.S. Web Design Standards](https://standards.usa.gov/) theme:
-```console
-(venv) python manage.py loaddata admin_interface_theme_uswds.json
 ```
