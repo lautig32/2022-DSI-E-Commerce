@@ -21,4 +21,6 @@ from user import views
 
 urlpatterns = [
     path("", views.home, name="login"),
+    path("profile/", views.my_profile, name="profile"),
+    path("register/", views.register, name="register"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

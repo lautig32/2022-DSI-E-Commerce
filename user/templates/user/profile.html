@@ -1,0 +1,32 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+{% block body %}
+<div>
+    <img class= "img__profile" src="{% static 'user/img/fondo_login.jpeg' %}">
+    <div>
+        <img class="img_photo_profile" src="{% static 'user/img/photo_profile.jpeg' %}">
+        <label for="exampleInputEmail1" class="form-label">Nombre del Usuario </label>
+        <div>
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">DNI: </label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Domicilio: </label>
+                  <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email: </label>
+                    <input type="text" class="form-control" id="exampleInputPassword1">
+                  </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Teléfono: </label>
+                    <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

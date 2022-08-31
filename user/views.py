@@ -17,6 +17,11 @@ from user.models import UserProfile
 def home(request):
     return render(request, 'user/login.html')
 
+def my_profile(request):
+    return render(request, 'user/profile.html')
+
+def register(request):
+    return render(request, 'user/register.html')
 
 def logout(request):
     do_logout(request)
