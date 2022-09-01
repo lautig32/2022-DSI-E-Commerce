@@ -26,7 +26,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ['document_number', 'first_name', 'last_name', 'email', ]
     ordering = ('-is_active', 'last_name', 'first_name', )
     fields = ('username', ('email', 'password', ), ('last_name', 'first_name',), 'document_number', 'number_phone',
-              ('profile_picture_medium_tag', 'profile_picture',), 
+              ('address','number_adress',),('profile_picture_medium_tag', 'profile_picture',), 
               ('is_active', 'is_staff', 'is_superuser', ), 'description')
     readonly_fields = ('profile_picture_medium_tag', )
     list_filter = ('is_active',)

@@ -1,12 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import forms
 
-from user.models import UserProfile
+from user.models import *
 
 
 
 class SignUpForm(UserCreationForm):
-    #email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
 
     class Meta:
         model = UserProfile
