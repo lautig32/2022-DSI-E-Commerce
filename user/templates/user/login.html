@@ -3,29 +3,35 @@
 
 {% block body %}
 <div>
-    <img class= "img__login" src="{% static 'user/img/fondo_login.jpeg' %}">
-</div>
-<div>
-    <div>
-        <div>
-            <h2>Bienvenido</h2>
-        </div>
-        <div>
-            <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email: </label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  <div>
+      <img class= "img__login" src="{% static 'user/img/fondo_login.jpeg' %}">
+  </div>
+  <div class="container text-center">
+      <div>
+          <div>
+              <h2>Iniciar sesión</h2>
+          </div>
+          <div>
+              <form  action="" method="POST" enctype="multipart/form-data" novalidate id="login">
+                {% csrf_token %}
+                <div class="mb-3 form-group">
+                  <label for="exampleInputEmail" class="form-label">Email: </label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Contraseña: </label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                <div class="mb-3 form-group">
+                  <label for="exampleInputPassword" class="form-label">Contraseña: </label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword">
                 </div>
-                <div><label for="btn_pass" target="_blank">¿Has olvidado tu contraseña?</label></div>
-                <div><label for="btn_pass">Registrarse</label></div>
-                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                <div><a for="btn_pass" href="">¿Has olvidado tu contraseña?</a></div>
+                <div><a for="btn_pass" href="{% url 'register' %}">Registrarse</a></div>
+                <button type="submit" class="btn btn-primary" 
+                        value="login" onclick="auth_login()">
+                        Iniciar sesión
+                </button>
               </form>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </div>
 {% endblock %}
