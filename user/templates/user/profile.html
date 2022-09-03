@@ -3,29 +3,54 @@
 
 {% block body %}
 {% include "user/navbar.html" %}
-<div>
-    <img class= "img__profile" src="{% static 'user/img/fondo_login.jpeg' %}">
-    <div>
-        <img class="img_photo_profile" src="{% static 'user/img/photo_profile.jpeg' %}">
-        <label for="exampleInputEmail1" class="form-label">Nombre del Usuario </label>
-        <div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">DNI: </label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+{% if user.is_authenticated %}
+  <div>
+      <img class= "img__profile" src="{% static 'user/img/fondo_login.jpeg' %}">
+      <div>
+          <img class="img_photo_profile" src="{{ user.profile_picture.url }}'">
+          <div>
+            <form action="" method="POST" enctype="multipart/form-data" novalidate id="my_profile">
+              {% csrf_token %}
+                <div class="mb-3 form-group">
+                  <input type="text" class="form-control" id="first_name" name="first_name"
+                  aria-describedby="emailHelp" value="{{ user.first_name }}">
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Domicilio: </label>
-                  <input type="text" class="form-control" id="exampleInputPassword1">
+                <div class="mb-3 form-group">
+                    <input type="text" class="form-control" id="last_name" name="last_name"
+                    aria-describedby="emailHelp" value="{{ user.last_name }}">
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Email: </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1">
-                  </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Teléfono: </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1">
+                <div class="mb-3 form-group">
+                    <input type="number" class="form-control" id="document_number" name="document_number"
+                    aria-describedby="emailHelp" value="{{ user.document_number }}">
                 </div>
-        </div>
-    </div>
-</div>
+                <div class="mb-3 form-group">
+                    <input type="number" class="form-control" id="number_phone" name="number_phone"
+                    aria-describedby="emailHelp" value="{{ user.number_phone }}">
+                </div>
+                <div class="mb-3 form-group">
+                    <input type="text" class="form-control" id="address" name="address"
+                    aria-describedby="emailHelp" value="{{ user.address }}">
+                </div>
+                <div class="mb-3 form-group">
+                    <input type="number" class="form-control" id="number_adress" name="number_adress"
+                    aria-describedby="emailHelp" value="{{ user.number_adress }}">
+                </div>
+                <!--div class="mb-3 form-group">
+                    <input type="email" class="form-control" id="email" name="email"
+                    aria-describedby="emailHelp" value="{{ user.email }}">
+                </div>
+                <div class="mb-3 form-group">
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña"/>
+                </div-->
+                <button type="submit" class="btn btn-primary" value="my_profile" onclick="my_profile()">Actualizar Datos</button>
+              </form>
+          </div>
+      </div>
+  </div>
+{% else %}
+  <!--meta http-equiv="Refresh" content="0;url=http://127.0.0.1:8000/login/"-->
+  <script type="text/javascript">
+    window.location="http://{{url_domain}}/login/";
+  </script>
+{% endif %}
 {% endblock %}

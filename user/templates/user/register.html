@@ -9,50 +9,43 @@
     <div>
         <div>
             <div class="container text-center">
+                <h2>Registrate</h2>
+                <label>Es rapido y sencillo</label>
                 <form  action="" method="POST" enctype="multipart/form-data" novalidate id="register">
                     {% csrf_token %}
                     <div class="mb-3 form-group">
-                        <label for="first_name" class="form-label">Nombre: </label>
                         <input type="text" class="form-control" id="first_name" name="first_name"
                         aria-describedby="emailHelp" placeholder="Nombres">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="last_name" class="form-label">Apellido: </label>
                         <input type="text" class="form-control" id="last_name" name="last_name"
                         aria-describedby="emailHelp" placeholder="Apellidos">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="document_number" class="form-label">DNI: </label>
                         <input type="number" class="form-control" id="document_number" name="document_number"
-                        aria-describedby="emailHelp">
+                        aria-describedby="emailHelp" placeholder="DNI">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="number_phone" class="form-label">Teléfono: </label>
                         <input type="number" class="form-control" id="number_phone" name="number_phone"
-                        aria-describedby="emailHelp">
+                        aria-describedby="emailHelp" placeholder="Teléfono">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="address" class="form-label">Domicilio: </label>
                         <input type="text" class="form-control" id="address" name="address"
-                        aria-describedby="emailHelp">
+                        aria-describedby="emailHelp" placeholder="Domicilio">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="number_adress" class="form-label">Numero de Domicilio: </label>
                         <input type="number" class="form-control" id="number_adress" name="number_adress"
-                        aria-describedby="emailHelp">
+                        aria-describedby="emailHelp" placeholder="Numero de Domicilio">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="email" class="form-label">Email: </label>
                         <input type="email" class="form-control" id="email" name="email"
-                        aria-describedby="emailHelp">
+                        aria-describedby="emailHelp" placeholder="Email">
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="password1" class="form-label">Contraseña: </label>
-                        <input type="password" class="form-control" id="password1" name="password1"placeholder="Contraseña"/>
+                        <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña"/>
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="password2" class="form-label">Repetir Contraseña: </label>
-                        <input type="password" class="form-control" id="password2" name="password2"placeholder="Contraseña"/>
+                        <input type="password" class="form-control" id="password2" name="password2"placeholder="Repetir Constraseña"/>
                     </div>
                     <button type="submit" class="btn btn-primary" value="register" onclick="register()">Registrarse</button>
                 </form>

@@ -35,7 +35,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         # obj.is_staff = obj.user_type != Person.SUBSCRIBER
 
         if 'document_number' in form.changed_data :
-            obj.username = obj.cuil_cuim
+            obj.username = obj.email
 
         if 'password' in form.changed_data:
             obj.set_password(obj.password)
