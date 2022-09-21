@@ -5,4 +5,10 @@
 <div>
     <a href="/login"><img class= "img__login" src="{% static 'user/img/fondo_login.jpeg' %}"></a>
 </div>
+{% if user.is_authenticated %}
+  <!--meta http-equiv="Refresh" content="0;url=http://127.0.0.1:8000/login/"-->
+  <script type="text/javascript">
+    window.location="http://{{url_domain}}/profile/";
+  </script>
+{% endif %}
 {% endblock %}

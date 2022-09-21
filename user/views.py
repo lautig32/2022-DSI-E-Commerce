@@ -17,7 +17,11 @@ from user.forms import *
 
 
 def home(request):
-    return render(request, 'user/home.html')
+    url_domain = get_current_site(request).domain
+    context = {
+                'url_domain': url_domain,
+                }
+    return render(request, 'user/home.html', context)
 
 
 def my_profile(request):
@@ -65,7 +69,7 @@ def user_login(request):
             else:
                 return HttpResponse(json.dumps({"message": "inactive"}), content_type="application/json")
         else:
-            return HttpResponse(json.dumps({"message": "invalid"}), content_type="application/json")
+            return HttpResponseRedirect(reverse('login'))
     else:
         form = SignUpForm(request.POST)
         return render(request, 'user/register.html', {'form': form})
