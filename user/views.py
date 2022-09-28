@@ -67,12 +67,13 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('profile'))
             else:
-                return HttpResponse(json.dumps({"message": "inactive"}), content_type="application/json")
+                return HttpResponseRedirect(reverse('login'))
         else:
             return HttpResponseRedirect(reverse('login'))
+
     else:
         form = SignUpForm(request.POST)
-        return render(request, 'user/register.html', {'form': form})
+        return render(request, 'user/register.html')
 
 
 def register(request):

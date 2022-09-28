@@ -1,3 +1,9 @@
 from django.test import TestCase
 
-# Create your tests here.
+# Models
+
+# class UserProfileModelTest(TestCase):
+
+# Views
+
+# class NameViewTest(TestCase): 
