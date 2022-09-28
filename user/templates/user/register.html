@@ -11,7 +11,16 @@
             <div class="container text-center">
                 <h2>Registrate</h2>
                 <label>Es rapido y sencillo</label>
-                <form  action="" method="POST" enctype="multipart/form-data" novalidate id="register">
+                <form  method="POST" enctype="multipart/form-data" novalidate id="register">
+                    <div>
+                        {% if form.errors %}
+                        <ul>
+                            {% for errors in form.errors%}    
+                                <li>{{ errors }}</li>
+                            {% endfor %}
+                        </ul> 
+                        {% endif %}
+                    </div>
                     {% csrf_token %}
                     <div class="mb-3 form-group">
                         <input type="text" class="form-control" id="first_name" name="first_name"
@@ -43,9 +52,16 @@
                     </div>
                     <div class="mb-3 form-group">
                         <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña"/>
+                        <ul>
+                            <li>Su contraseña no puede ser similar a otros componentes de su información personal.</li>
+                            <li>Su contraseña debe contener por lo menos 8 caracteres.</li>
+                            <li>Su contraseña no puede ser una contraseña usada muy comúnmente.</li>
+                            <li>Su contraseña no puede estar formada exclusivamente por números.</li>
+                        </ul>
                     </div>
                     <div class="mb-3 form-group">
                         <input type="password" class="form-control" id="password2" name="password2"placeholder="Repetir Constraseña"/>
+                        <small id="passwordHelpBlock" class="form-text text-muted"></small>
                     </div>
                     <button type="submit" class="btn btn-primary" value="register" onclick="register()">Registrarse</button>
                 </form>

@@ -77,38 +77,42 @@ def user_login(request):
 
 
 def register(request):
-    form = SignUpForm(request.POST)
-    context = {
-                'form': form
-                }
+
+    if request.method == "GET":
+        return render(request, 'user/register.html')
     if request.method == "POST":
+        form = SignUpForm(request.POST)
+        context = {
+                'form': form
+        }
         fname = request.POST.get('first_name')
         lname = request.POST.get('last_name')
-        email = request.POST.get('email')
         document_number = request.POST.get('document_number')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
+        number_phone = request.POST.get('number_phone')
         address = request.POST.get('address')
         number_adress = request.POST.get('number_adress')
-        number_phone = request.POST.get('number_phone')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
         data = {'first_name': fname, 'last_name': lname, 'email': email, 'document_number': document_number,
                 'password2': password2, 'password1': password1,
                 'address': address, 'number_adress': number_adress, 'number_phone': number_phone}
         form = SignUpForm(data=data)
-        """form = SignUpForm(request.POST)"""
-        context = {
-                'form': form
-                }
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = True
             user.is_staff = True
             user.save()
+            user = authenticate(username=email, password=password1)
+            login(request, user)
             return HttpResponseRedirect(reverse('profile'))
         else:
+            context = {
+                'form': form
+            }
             return render(request, "user/register.html", context)
     else:
-        return render(request, 'user/register.html', context)
+        return render(request, 'user/register.html')
 
 
 def favorite(request):
