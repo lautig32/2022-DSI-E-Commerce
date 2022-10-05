@@ -15,6 +15,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 from user.forms import *
 
+# TODO: metodo para recuperar la clave con pregunta secreta
 
 def home(request):
     url_domain = get_current_site(request).domain
@@ -56,8 +57,14 @@ def logout(request):
 
 
 def user_login(request):
+    url_domain = get_current_site(request).domain
+    form = SignUpForm(request.POST)
+    context = {
+                'form': form,
+                'url_domain': url_domain,
+            }
     if request.method == 'GET':
-        return render(request, 'user/login.html')
+        return render(request, 'user/login.html', context)
     if request.method == 'POST':
         email = request.POST.get('email').strip()
         password = request.POST.get('password')
@@ -72,19 +79,19 @@ def user_login(request):
             return HttpResponseRedirect(reverse('login'))
 
     else:
-        form = SignUpForm(request.POST)
-        return render(request, 'user/register.html')
+        return render(request, 'user/login.html', context)
 
 
 def register(request):
-
+    url_domain = get_current_site(request).domain
+    form = SignUpForm(request.POST)
+    context = {
+                'form': form,
+                'url_domain': url_domain,
+            }
     if request.method == "GET":
-        return render(request, 'user/register.html')
+        return render(request, 'user/register.html', context)
     if request.method == "POST":
-        form = SignUpForm(request.POST)
-        context = {
-                'form': form
-        }
         fname = request.POST.get('first_name')
         lname = request.POST.get('last_name')
         document_number = request.POST.get('document_number')
@@ -101,18 +108,15 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = True
-            user.is_staff = True
+            user.is_staff = False
             user.save()
             user = authenticate(username=email, password=password1)
             login(request, user)
             return HttpResponseRedirect(reverse('profile'))
         else:
-            context = {
-                'form': form
-            }
             return render(request, "user/register.html", context)
     else:
-        return render(request, 'user/register.html')
+        return render(request, 'user/register.html', context)
 
 
 def favorite(request):
