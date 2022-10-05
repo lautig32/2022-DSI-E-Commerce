@@ -1,0 +1,45 @@
+.img__register{
+    height: 100%;
+    width:100%;
+    position: relative;
+    
+}
+.div_img_register{
+    width:50%;
+    height: 100%;   
+    position: absolute;
+}
+.div_register{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0%;
+    text-align: center;
+    background-color: #F3E8D2;  
+    text-align: center;
+    padding-top: 1%;
+}
+.div_title{
+    background-color: #573442;
+    padding: 30px;
+}
+#h2_title{
+    color: white;
+}
+.div_labels{
+    margin-left:20%;
+    margin-right: 20%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.btn-register{
+    background-color: #573442;
+    color:white;
+}
+.container-form{
+    position: center;
+    top: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #E1CB9E;
+}

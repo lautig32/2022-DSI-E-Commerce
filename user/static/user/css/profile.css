@@ -1,0 +1,22 @@
+body{
+    background-image:url(../img/photo_back_brul.jpeg) ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+.background_profile{
+    background-color: #E1CB9E;
+    padding: 50PX;
+    padding-left: 200px;
+    padding-right: 200px;
+    position: relative;
+    margin: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: center;
+}
+.div_name_user{
+    text-align: center;
+}
