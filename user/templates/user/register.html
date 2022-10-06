@@ -1,16 +1,22 @@
 {% extends "user/base.html" %}
 {% load static %}
 
+{% block headLinks%}
+      <link rel="stylesheet" href="{% static 'user\css\register.css' %}">
+{% endblock %}
+
 {% block body %}
 <div>
-    <div>
-        <img class= "img_register" src="{% static 'user/img/fondo_login.jpeg' %}">
+    <div class="div_img_register">
+        <img class= "img__register" src="{% static 'user/img/fondo_login.jpeg' %}">
     </div>
     <div>
-        <div>
-            <div class="container text-center">
-                <h2>Registrate</h2>
-                <label>Es rapido y sencillo</label>
+        <div  class="div_register">
+            <div class="container-form">
+                <div class="div_title">
+                    <h2 id="h2_title">Registrate</h2>
+                </div>
+                <div class="div_labels">
                 <form  method="POST" enctype="multipart/form-data" novalidate id="register">
                     <div>
                         {% if form.errors %}
@@ -63,7 +69,7 @@
                         <input type="password" class="form-control" id="password2" name="password2"placeholder="Repetir Constraseña"/>
                         <small id="passwordHelpBlock" class="form-text text-muted"></small>
                     </div>
-                    <button type="submit" class="btn btn-primary" value="register" onclick="register()">Registrarse</button>
+                    <button type="submit" class="btn btn-primary btn-register" value="register" onclick="register()">Registrarse</button>
                 </form>
             </div>
         </div>
