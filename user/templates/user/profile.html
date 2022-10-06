@@ -1,16 +1,24 @@
 {% extends "user/base.html" %}
 {% load static %}
 
+{% block headLinks%}
+  <link rel="stylesheet" href="{% static 'user\css\profile.css' %}">
+{% endblock %}
+
 {% block body %}
 {% include "user/navbar.html" %}
 {% if user.is_authenticated %}
   <div>
-    
-      <img class= "img__profile" src="{% static 'user/img/fondo_login.jpeg' %}">
+    <div class="background_profile">
       <div>
+        <!--
           {% if user.profile_picture %}
             <img class="img_photo_profile" src="{{ user.profile_picture.url }}'">
-          {% endif %}
+          {% endif %}-->
+          <div class="div_name_user">
+            <h2>Mi perfil</h2>
+            <p>{{user.username}}</p>
+          </div>
           <div>
             <form action="" method="POST" enctype="multipart/form-data" novalidate id="my_profile">
               {% csrf_token %}
