@@ -90,7 +90,7 @@ def register(request):
                 'url_domain': url_domain,
             }
     if request.method == "GET":
-        return render(request, 'user/register.html', context)
+        return render(request, 'user/register.html')
     if request.method == "POST":
         fname = request.POST.get('first_name')
         lname = request.POST.get('last_name')
