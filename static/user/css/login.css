@@ -1,0 +1,55 @@
+.img__login{
+    height: 100%;
+    width:100%;
+    position: relative;
+    
+}
+.div_img_login{
+    width:50%;
+    height: 100%;   
+    position: absolute;
+}
+.div_login{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0%;
+    text-align: center;
+    background-color: #F3E8D2;  
+    text-align: center;
+}
+.div_login-primary{
+    position: center;
+    position: relative;
+    top: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #E1CB9E;
+}
+.div_title{
+    background-color: #573442;
+    padding: 30px;
+}
+#h2_title{
+    color: white;
+}
+.div_labels{
+    margin-left:20%;
+    margin-right: 20%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.btn-log_in{
+    background-color: #573442;
+    color:white;
+}
+.btn-log_in:hover{
+    background-color: #2c1f24;  
+}
+.btn_pass{
+    color: #573442;
+    padding-bottom: 5px;
+}
+.btn_pass:hover{
+    color: #2c1f24;
+}
