@@ -22,7 +22,7 @@
                         {% if form.errors %}
                         <ul>
                             {% for errors in form.errors%}    
-                                <li>{{ errors }}</li>
+                                {{ errors }}    
                             {% endfor %}
                         </ul> 
                         {% endif %}

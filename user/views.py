@@ -17,12 +17,12 @@ from user.forms import *
 
 # TODO: metodo para recuperar la clave con pregunta secreta
 
-def home(request):
-    url_domain = get_current_site(request).domain
-    context = {
-                'url_domain': url_domain,
-                }
-    return render(request, 'user/home.html', context)
+#def home(request):
+#    url_domain = get_current_site(request).domain
+#    context = {
+#                'url_domain': url_domain,
+#                }
+#    return render(request, 'user/home.html', context)
 
 
 def my_profile(request):
