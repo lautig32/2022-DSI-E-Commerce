@@ -1,0 +1,18 @@
+{% load i18n %}
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+</style>
+<div id="footer" class="footer">
+    <hr/>
+    <div class="container pull-right" >
+        <p class="text-muted credit">{% if version %}{{ version }}{% endif %}{% trans 'Copyright' %} {% if site_url %}<a href="{{ site_url }}" target="_blank">{{ site_name }}</a>{% endif %}{% if period %} &copy; {{ period }}{% endif %}</p>
+    </div>
+</div>
