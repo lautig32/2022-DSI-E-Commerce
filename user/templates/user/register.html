@@ -14,64 +14,22 @@
         <div  class="div_register">
             <div class="container-form">
                 <div class="div_title">
-                    <h2 id="h2_title">Registrate</h2>
+                    <h2 id="h2_title">Sign up</h2>
                 </div>
                 <div class="div_labels">
                 <form  method="POST" enctype="multipart/form-data" novalidate id="register">
-                    <div>
-                        {% if form.errors %}
-                        <ul>
-                            {% for errors in form.errors%}    
-                                {{ errors }}    
-                            {% endfor %}
-                        </ul> 
-                        {% endif %}
-                    </div>
                     {% csrf_token %}
-                    <div class="mb-3 form-group">
-                        <input type="text" class="form-control" id="first_name" name="first_name"
-                        aria-describedby="emailHelp" placeholder="Nombres">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="text" class="form-control" id="last_name" name="last_name"
-                        aria-describedby="emailHelp" placeholder="Apellidos">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="number" class="form-control" id="document_number" name="document_number"
-                        aria-describedby="emailHelp" placeholder="DNI">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="number" class="form-control" id="number_phone" name="number_phone"
-                        aria-describedby="emailHelp" placeholder="Teléfono">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="text" class="form-control" id="address" name="address"
-                        aria-describedby="emailHelp" placeholder="Domicilio">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="number" class="form-control" id="number_adress" name="number_adress"
-                        aria-describedby="emailHelp" placeholder="Numero de Domicilio">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="email" class="form-control" id="email" name="email"
-                        aria-describedby="emailHelp" placeholder="Email">
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña"/>
-                        {% if form.errors %}
-                        <ul>
-                            <li>Su contraseña no puede ser similar a otros componentes de su información personal.</li>
-                            <li>Su contraseña debe contener por lo menos 8 caracteres.</li>
-                            <li>Su contraseña no puede ser una contraseña usada muy comúnmente.</li>
-                            <li>Su contraseña no puede estar formada exclusivamente por números.</li>
-                        </ul>
-                        {% endif %}
-                    </div>
-                    <div class="mb-3 form-group">
-                        <input type="password" class="form-control" id="password2" name="password2"placeholder="Repetir Constraseña"/>
-                        <small id="passwordHelpBlock" class="form-text text-muted"></small>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-register" value="register" onclick="register()">Registrarse</button>
+                    {% for field in form %}
+                        <div class="fieldWrapper">
+                            {{ field.errors }}
+                            {{ field }}
+                            <br>
+                            {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary btn-register" value="register" onclick="register()">Save register</button>
                 </form>
             </div>
         </div>

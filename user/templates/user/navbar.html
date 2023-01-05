@@ -13,22 +13,21 @@
       {% if user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-cente" 
+            <a class="nav-link d-flex align-items-cente" 
             href="#" role="button" data-toggle="dropdown" aria-expanded="false" id="navbarUser">
-            <div class="lh-sm navbar-text">
+            <div class="lh-sm navbar-text dropdown-toggle">
                 <span class="surname">{{ user.last_name }}</span>
                 <br>
-                {{ user.first_name }}
+                <span class="surname">{{ user.first_name }}</span>
             </div>
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/profile">Mi Perfil</a>
-            <!--a class="dropdown-item" href="#">Favorito</a-->
               {% if request.user.is_staff %}
                 <a class="dropdown-item" href="/admin">Administración</a>
               {% endif %}
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'user_logout' %}">Cerrar Sesion</a>
+              <a class="dropdown-item" href="{% url 'user:user_logout' %}">Cerrar Sesion</a>
             </div>
         </ul>
       {% endif %}
