@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from pathlib import Path
 import os
+from django.urls import reverse_lazy
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'user.apps.UserConfig',
-    'favorite.apps.FavoriteConfig',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -113,13 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'user.UserProfile'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = reverse_lazy('user: profile')
+LOGOUT_REDIRECT_URL = reverse_lazy('user: login')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-AR'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 

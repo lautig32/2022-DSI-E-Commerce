@@ -1,8 +1,46 @@
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import User, AbstractUser, UserManager
 from django.utils.html import format_html
+from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django_upload_path.upload_path import auto_cleaned_path_stripped_uuid4
+
+class UserProfileManager(UserManager):
+    
+    def _create_user(self, email, password=None, **extra_fields):
+
+        if not email:
+            raise ValueError(_("The user must have an email address"))
+
+        user =  self.model(
+            username = email, 
+            email = self.normalize_email(email), 
+            first_name = extra_fields.get("first_name"),
+            last_name = extra_fields.get("last_name"),
+            is_staff = extra_fields.get("is_staff"),
+            is_superuser = extra_fields.get("is_superuser")
+            )
+
+        user.password = make_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
+        return self._create_user(email, password, **extra_fields)
+    
+    def create_superuser(self, email, password=None, **extra_fields):
+
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError(_("Superuser must have is_staff=True."))
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError(_("Superuser must have is_superuser=True."))
+
+        return self._create_user(email, password, **extra_fields)
 
 
 class UserProfile(AbstractUser):
@@ -42,6 +80,11 @@ class UserProfile(AbstractUser):
         return "-"
     profile_picture_medium_tag.short_description = _('foto de perfil')
     profile_picture_medium_tag.allow_tags = True
+
+    object = UserProfileManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name", "password"]
 
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'

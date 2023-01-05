@@ -1,0 +1,44 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+{% block headLinks%}
+  <link rel="stylesheet" href="{% static 'user\css\profile.css' %}">
+{% endblock %}
+
+{% block body %}
+{% include "user/navbar.html" %}
+{% if user.is_authenticated %}
+  <div>
+    <div class="background_profile">
+      <div>
+        <!--
+          {% if user.profile_picture %}
+            <img class="img_photo_profile" src="{{ user.profile_picture.url }}'">
+          {% endif %}-->
+          <div class="div_name_user">
+            <h2>Mi perfil</h2>
+            <p>{{user.username}}</p>
+          </div>
+          <div>
+            <form action="" method="POST" enctype="multipart/form-data" novalidate id="my_profile">
+              {% csrf_token %}
+                {{ form }}
+                <!--div class="mb-3 form-group">
+                    <input type="email" class="form-control" id="email" name="email"
+                    aria-describedby="emailHelp" value="{{ user.email }}">
+                </div>
+                <div class="mb-3 form-group">
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña"/>
+                </div-->
+                <button type="submit" class="btn btn-primary" value="my_profile" onclick="my_profile()">Actualizar Datos</button>
+              </form>
+          </div>
+      </div>
+  </div>
+{% else %}
+  <!--meta http-equiv="Refresh" content="0;url=http://127.0.0.1:8000/"-->
+  <script type="text/javascript">
+    window.location="http://{{url_domain}}/";
+  </script>
+{% endif %}
+{% endblock %}

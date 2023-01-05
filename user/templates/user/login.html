@@ -14,20 +14,23 @@
               <h2 id="h2_title">Iniciar sesión</h2>
           </div>
           <div class="div_labels">
-              <form  action="" method="POST" enctype="multipart/form-data" novalidate id="login">
+            <form method="POST" autocomplete="off" enctype="multipart/form-data" novalidate id="register">
                 {% csrf_token %}
-                <div class="mb-3 form-group">
-                  <label for="exampleInputEmail" class="form-label">Email: </label>
-                  <input type="email" name="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text"></div>
-                </div>
-                <div class="mb-3 form-group">
-                  <label for="exampleInputPassword" class="form-label">Contraseña: </label>
-                  <input type="password" name="password" class="form-control" id="exampleInputPassword">
-                </div>
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        <br>
+                        {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">
+                            {{ field.help_text|safe }}
+                        </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
                 <div><a class="btn_pass" href="">¿Has olvidado tu contraseña?</a></div>
-                <div class="btn_pass"><a class="btn_pass" href="{% url 'register' %}">Registrarse</a></div>
-                <button type="submit" class="btn btn-primary " 
+                <div class="btn_pass"><a class="btn_pass" href="{% url 'user:register' %}">Registrarse</a></div>
+                <button type="submit" class="btn btn-primary "  
                         value="login" onclick="auth_login()">
                         Iniciar sesión
                 </button>
