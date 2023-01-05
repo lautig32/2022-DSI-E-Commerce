@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rilfv*o$dbjbe4w2i1ig)wf=4%!1+6#zm5%vllej42p$)c@93t'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'qdx(rmj$_fan(pp!5jf*f)r%$fdjcdsnt+u1al@xy9@=5(1-ye')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DJANGO_DEBUG' not in os.environ
 
 ALLOWED_HOSTS = ['*']
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'user.apps.UserConfig',
+    'rest_framework',
+    'api',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -63,6 +65,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 TEMPLATES = [
     {
